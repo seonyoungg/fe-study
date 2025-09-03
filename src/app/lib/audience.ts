@@ -42,9 +42,14 @@ function statement({ invoice, plays }: StatementProps): string {
     return result;
   }
 
+  // 임시  변수를 질의함수로 바꾸기
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID];
+  }
+
   // 고객이 본 공연들을 순회하면서 처리
   for (let perf of invoice.performances) {
-    const play = plays[perf.playID]; // 공연 ID로 공연 정보 찾기
+    const play = playFor(perf); // 우변을 함수로 추출
     let thisAmount = amountFor(perf, play);
 
     // 적립 포인트 계산 (모든 장르 공통)
