@@ -63,7 +63,7 @@ function statement({ invoice, plays }: StatementProps): string {
   }
 
   // format 추출
-  function format(aNumber) {
+  function usd(aNumber) {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -72,7 +72,7 @@ function statement({ invoice, plays }: StatementProps): string {
   }
 
   // 청구 총액과 적립 포인트 추가
-  result += `총액: ${format(totalAmount / 100)}\n`;
+  result += `총액: ${usd(totalAmount / 100)}\n`;
   result += `적립 포인트: ${volumeCredits}점\n`;
 
   return result; // 최종 문자열 반환
