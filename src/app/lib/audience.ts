@@ -13,6 +13,33 @@ function statement({ invoice, plays }: StatementProps): string {
     minimumFractionDigits: 2,
   }).format;
 
+  // 함수 추출하기 (공연금액)
+  function amountFor(perf, play) {
+    let thisAmount = 0; // 이번 공연 금액
+
+    // 장르별 금액 계산
+    switch (play.type) {
+      case 'tragedy': // 비극
+        thisAmount = 40000; // 기본 40,000
+        if (perf.audience > 30) {
+          // 관객이 30명 초과 시 초과 × 1,000
+          thisAmount += 1000 * (perf.audience - 30);
+        }
+        break;
+      case 'comedy': // 희극
+        thisAmount = 30000; // 기본 30,000
+        if (perf.audience > 20) {
+          // 20명 초과 시 추가금
+          thisAmount += 1000 + 500 * (perf.audience - 20);
+        }
+        // 희극은 관객 수 × 300 추가
+        thisAmount += 300 * perf.audience;
+        break;
+      default:
+        throw new Error(`알 수 없는 장르: ${play.type}`);
+    }
+  }
+
   // 고객이 본 공연들을 순회하면서 처리
   for (let perf of invoice.performances) {
     const play = plays[perf.playID]; // 공연 ID로 공연 정보 찾기
@@ -36,31 +63,4 @@ function statement({ invoice, plays }: StatementProps): string {
   result += `적립 포인트: ${volumeCredits}점\n`;
 
   return result; // 최종 문자열 반환
-}
-
-// 함수 추출하기 (공연금액)
-function amountFor(perf, play) {
-  let thisAmount = 0; // 이번 공연 금액
-
-  // 장르별 금액 계산
-  switch (play.type) {
-    case 'tragedy': // 비극
-      thisAmount = 40000; // 기본 40,000
-      if (perf.audience > 30) {
-        // 관객이 30명 초과 시 초과 × 1,000
-        thisAmount += 1000 * (perf.audience - 30);
-      }
-      break;
-    case 'comedy': // 희극
-      thisAmount = 30000; // 기본 30,000
-      if (perf.audience > 20) {
-        // 20명 초과 시 추가금
-        thisAmount += 1000 + 500 * (perf.audience - 20);
-      }
-      // 희극은 관객 수 × 300 추가
-      thisAmount += 300 * perf.audience;
-      break;
-    default:
-      throw new Error(`알 수 없는 장르: ${play.type}`);
-  }
 }
