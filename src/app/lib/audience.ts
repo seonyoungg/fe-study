@@ -7,12 +7,16 @@ function statement({ invoice, plays }: StatementProps): string {
   let result = `청구 내역 (고객명 : ${invoice.customer})\n`; // 결과 문자열 시작 부분
 
   // 고객이 본 공연들을 순회하면서 처리
+  // 값 누적 로직을 별도 for문으로 분리
   for (let perf of invoice.performances) {
-    volumeCredits += volumeCreditsFor(perf);
     // 이번 공연 내역 추가
     result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience}석)\n`;
     // 총액에 이번 공연 금액 누적
     totalAmount += amountFor(perf);
+  }
+
+  for (let perf of invoice.performances) {
+    volumeCredits += volumeCreditsFor(perf);
   }
 
   // 함수 추출하기 (공연금액)
