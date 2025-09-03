@@ -14,9 +14,12 @@ function statement({ invoice, plays }: StatementProps): string {
     totalAmount += amountFor(perf);
   }
 
-  let volumeCredits = 0; // 적립 포인트
-  for (let perf of invoice.performances) {
-    volumeCredits += volumeCreditsFor(perf);
+  function totalVolumeCredits() {
+    let volumeCredits = 0; // 적립 포인트
+    for (let perf of invoice.performances) {
+      volumeCredits += volumeCreditsFor(perf);
+    }
+    return volumeCredits;
   }
 
   // 함수 추출하기 (공연금액)
