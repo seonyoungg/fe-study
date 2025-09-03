@@ -11,6 +11,10 @@ function statement({ invoice, plays }: StatementProps): string {
     result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience}석)\n`;
   }
 
+  // 청구 총액과 적립 포인트 추가
+  result += `총액: ${usd(totalAmount())}\n`;
+  result += `적립 포인트: ${totalVolumeCredits()}점\n`;
+
   function totalAmount() {
     let result = 0; // 총 금액
     for (let perf of invoice.performances) {
@@ -83,10 +87,6 @@ function statement({ invoice, plays }: StatementProps): string {
       minimumFractionDigits: 2,
     }).format(aNumber / 100);
   }
-
-  // 청구 총액과 적립 포인트 추가
-  result += `총액: ${usd(totalAmount())}\n`;
-  result += `적립 포인트: ${totalVolumeCredits()}점\n`;
 
   return result; // 최종 문자열 반환
 }
