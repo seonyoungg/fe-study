@@ -78,6 +78,7 @@ function statement({ invoice, plays }: StatementProps): string {
     }).format(aNumber / 100);
   }
 
+  let volumeCredits = totalVolumeCredits();
   // 청구 총액과 적립 포인트 추가
   result += `총액: ${usd(totalAmount)}\n`;
   result += `적립 포인트: ${volumeCredits}점\n`;
