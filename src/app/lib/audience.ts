@@ -14,26 +14,26 @@ function statement({ invoice, plays }: StatementProps): string {
   }).format;
 
   // 함수 추출하기 (공연금액)
-  function amountFor(perf, play) {
+  function amountFor(aPerformance, play) {
     let result = 0; // 이번 공연 금액
 
     // 장르별 금액 계산
     switch (play.type) {
       case 'tragedy': // 비극
         result = 40000; // 기본 40,000
-        if (perf.audience > 30) {
+        if (aPerformance.audience > 30) {
           // 관객이 30명 초과 시 초과 × 1,000
-          result += 1000 * (perf.audience - 30);
+          result += 1000 * (aPerformance.audience - 30);
         }
         break;
       case 'comedy': // 희극
         result = 30000; // 기본 30,000
-        if (perf.audience > 20) {
+        if (aPerformance.audience > 20) {
           // 20명 초과 시 추가금
-          result += 1000 + 500 * (perf.audience - 20);
+          result += 1000 + 500 * (aPerformance.audience - 20);
         }
         // 희극은 관객 수 × 300 추가
-        result += 300 * perf.audience;
+        result += 300 * aPerformance.audience;
         break;
       default:
         throw new Error(`알 수 없는 장르: ${play.type}`);
