@@ -6,13 +6,6 @@ function statement({ invoice, plays }: StatementProps): string {
   let volumeCredits = 0; // 적립 포인트
   let result = `청구 내역 (고객명 : ${invoice.customer})\n`; // 결과 문자열 시작 부분
 
-  // 금액을 달러 통화 형식으로 변환하는 포맷터
-  const format = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-  }).format;
-
   // 고객이 본 공연들을 순회하면서 처리
   for (let perf of invoice.performances) {
     volumeCredits += volumeCreditsFor(perf);
@@ -67,6 +60,15 @@ function statement({ invoice, plays }: StatementProps): string {
     }
 
     return result;
+  }
+
+  // format 추출
+  function format(aNumber) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    }).format(aNumber);
   }
 
   // 청구 총액과 적립 포인트 추가
