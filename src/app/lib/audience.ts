@@ -49,7 +49,7 @@ function statement({ invoice, plays }: StatementProps): string {
 
   // 고객이 본 공연들을 순회하면서 처리
   for (let perf of invoice.performances) {
-    let thisAmount = amountFor(perf, playFor(perf));
+    let thisAmount = amountFor(perf);
 
     // 적립 포인트 계산 (모든 장르 공통)
     volumeCredits += Math.max(perf.audience - 30, 0);
