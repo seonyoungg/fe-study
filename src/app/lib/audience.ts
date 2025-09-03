@@ -49,8 +49,6 @@ function statement({ invoice, plays }: StatementProps): string {
 
   // 고객이 본 공연들을 순회하면서 처리
   for (let perf of invoice.performances) {
-    let thisAmount = amountFor(perf);
-
     // 적립 포인트 계산 (모든 장르 공통)
     volumeCredits += Math.max(perf.audience - 30, 0);
     // 희극이면 5명당 1점 추가
@@ -59,9 +57,9 @@ function statement({ invoice, plays }: StatementProps): string {
     }
 
     // 이번 공연 내역 추가
-    result += ` ${playFor(perf).name}: ${format(thisAmount / 100)} (${perf.audience}석)\n`;
+    result += ` ${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${perf.audience}석)\n`;
     // 총액에 이번 공연 금액 누적
-    totalAmount += thisAmount;
+    totalAmount += amountFor(perf);
   }
 
   // 청구 총액과 적립 포인트 추가
