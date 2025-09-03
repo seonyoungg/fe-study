@@ -57,16 +57,16 @@ function statement({ invoice, plays }: StatementProps): string {
   }
 
   // volumeCredit 추출
-  function volumeCreditsFor(perf) {
+  function volumeCreditsFor(aPerformance) {
     // 적립 포인트 계산 (모든 장르 공통)
-    let volumeCredits = 0; // 적립 포인트
-    volumeCredits += Math.max(perf.audience - 30, 0);
+    let result = 0; // 적립 포인트
+    result += Math.max(aPerformance.audience - 30, 0);
     // 희극이면 5명당 1점 추가
-    if (playFor(perf).type === 'comedy') {
-      volumeCredits += Math.floor(perf.audience / 5);
+    if (playFor(aPerformance).type === 'comedy') {
+      result += Math.floor(aPerformance.audience / 5);
     }
 
-    return volumeCredits;
+    return result;
   }
 
   // 청구 총액과 적립 포인트 추가
