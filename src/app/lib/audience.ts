@@ -10,7 +10,7 @@ function statement({ invoice, plays }: StatementProps): string {
   for (let perf of invoice.performances) {
     volumeCredits += volumeCreditsFor(perf);
     // 이번 공연 내역 추가
-    result += ` ${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${perf.audience}석)\n`;
+    result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience}석)\n`;
     // 총액에 이번 공연 금액 누적
     totalAmount += amountFor(perf);
   }
@@ -68,11 +68,11 @@ function statement({ invoice, plays }: StatementProps): string {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 2,
-    }).format(aNumber);
+    }).format(aNumber / 100);
   }
 
   // 청구 총액과 적립 포인트 추가
-  result += `총액: ${usd(totalAmount / 100)}\n`;
+  result += `총액: ${usd(totalAmount)}\n`;
   result += `적립 포인트: ${volumeCredits}점\n`;
 
   return result; // 최종 문자열 반환
