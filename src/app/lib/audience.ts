@@ -3,7 +3,6 @@ import { StatementProps } from '@/type/audience';
 // 청구서를 출력하는 함수
 function statement({ invoice, plays }: StatementProps): string {
   let totalAmount = 0; // 총 금액
-  let volumeCredits = 0; // 적립 포인트
   let result = `청구 내역 (고객명 : ${invoice.customer})\n`; // 결과 문자열 시작 부분
 
   // 고객이 본 공연들을 순회하면서 처리
@@ -15,6 +14,7 @@ function statement({ invoice, plays }: StatementProps): string {
     totalAmount += amountFor(perf);
   }
 
+  let volumeCredits = 0; // 적립 포인트
   for (let perf of invoice.performances) {
     volumeCredits += volumeCreditsFor(perf);
   }
