@@ -2,7 +2,6 @@ import { StatementProps } from '@/type/audience';
 
 // 청구서를 출력하는 함수
 function statement({ invoice, plays }: StatementProps): string {
-  let totalAmount = 0; // 총 금액
   let result = `청구 내역 (고객명 : ${invoice.customer})\n`; // 결과 문자열 시작 부분
 
   // 고객이 본 공연들을 순회하면서 처리
@@ -10,8 +9,15 @@ function statement({ invoice, plays }: StatementProps): string {
   for (let perf of invoice.performances) {
     // 이번 공연 내역 추가
     result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience}석)\n`;
-    // 총액에 이번 공연 금액 누적
-    totalAmount += amountFor(perf);
+  }
+
+  function totalAmount() {
+    let result = 0; // 총 금액
+    for (let perf of invoice.performances) {
+      // 총액에 이번 공연 금액 누적
+      result += amountFor(perf);
+    }
+    return result;
   }
 
   function totalVolumeCredits() {
@@ -78,10 +84,8 @@ function statement({ invoice, plays }: StatementProps): string {
     }).format(aNumber / 100);
   }
 
-  let volumeCredits = totalVolumeCredits();
-
   // 청구 총액과 적립 포인트 추가
-  result += `총액: ${usd(totalAmount)}\n`;
+  result += `총액: ${usd(totalAmount())}\n`;
   result += `적립 포인트: ${totalVolumeCredits()}점\n`;
 
   return result; // 최종 문자열 반환
