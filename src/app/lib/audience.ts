@@ -54,12 +54,12 @@ function statement({ invoice, plays }: StatementProps): string {
     // 적립 포인트 계산 (모든 장르 공통)
     volumeCredits += Math.max(perf.audience - 30, 0);
     // 희극이면 5명당 1점 추가
-    if (play.type === 'comedy') {
+    if (playFor(perf).type === 'comedy') {
       volumeCredits += Math.floor(perf.audience / 5);
     }
 
     // 이번 공연 내역 추가
-    result += ` ${play.name}: ${format(thisAmount / 100)} (${perf.audience}석)\n`;
+    result += ` ${playFor(perf).name}: ${format(thisAmount / 100)} (${perf.audience}석)\n`;
     // 총액에 이번 공연 금액 누적
     totalAmount += thisAmount;
   }
