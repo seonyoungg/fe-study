@@ -13,6 +13,15 @@ function statement({ invoice, plays }: StatementProps): string {
     minimumFractionDigits: 2,
   }).format;
 
+  // 고객이 본 공연들을 순회하면서 처리
+  for (let perf of invoice.performances) {
+    volumeCredits += volumeCreditsFor(perf);
+    // 이번 공연 내역 추가
+    result += ` ${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${perf.audience}석)\n`;
+    // 총액에 이번 공연 금액 누적
+    totalAmount += amountFor(perf);
+  }
+
   // 함수 추출하기 (공연금액)
   function amountFor(aPerformance) {
     let result = 0; // 이번 공연 금액
@@ -47,19 +56,17 @@ function statement({ invoice, plays }: StatementProps): string {
     return plays[aPerformance.playID];
   }
 
-  // 고객이 본 공연들을 순회하면서 처리
-  for (let perf of invoice.performances) {
+  // volumeCredit 추출
+  function volumeCreditsFor(perf) {
     // 적립 포인트 계산 (모든 장르 공통)
+    let volumeCredits = 0; // 적립 포인트
     volumeCredits += Math.max(perf.audience - 30, 0);
     // 희극이면 5명당 1점 추가
     if (playFor(perf).type === 'comedy') {
       volumeCredits += Math.floor(perf.audience / 5);
     }
 
-    // 이번 공연 내역 추가
-    result += ` ${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${perf.audience}석)\n`;
-    // 총액에 이번 공연 금액 누적
-    totalAmount += amountFor(perf);
+    return volumeCredits;
   }
 
   // 청구 총액과 적립 포인트 추가
