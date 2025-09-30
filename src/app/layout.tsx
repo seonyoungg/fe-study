@@ -13,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko-KR'>
-      <body>{children}</body>
+      <body>
+        <div className='w-full max-w-[1920px] mx-auto'>{children}</div>
+      </body>
     </html>
   );
 }
