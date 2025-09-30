@@ -4,14 +4,14 @@ import { HomeItem3 } from '@/components/home/homeItem3';
 
 export default function Home() {
   return (
-    <main>
+    <main className='w-full'>
       {/* <section>
         <HomeItem />
       </section>
       <section>
         <HomeItem2 />
       </section> */}
-      <section>
+      <section className='w-full'>
         <HomeItem3 />
       </section>
     </main>
