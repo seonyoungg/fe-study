@@ -9,7 +9,6 @@ import {
 } from "motion/react";
 
 
-
 export const HeroParallax = ({
   products,
 }: {
