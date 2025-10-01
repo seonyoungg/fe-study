@@ -10,8 +10,8 @@ export default function BasicPage({
     <html lang="ko-KR">
       <body>
         <div className="w-full p-10 bg-white">
-          {children}
           <BtnGroup />
+          {children}
         </div>
       </body>
     </html>

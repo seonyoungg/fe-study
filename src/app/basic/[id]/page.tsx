@@ -21,28 +21,28 @@ export default function BasicPage({ params }: PageProps) {
     case "2":
       return (
         <section className="border p-4 space-y-4">
-          <p className="mb-4">Scale</p>
+          <p className="mb-4 bg-gray-200 inline-block px-2 py-1 rounded-lg">Scale</p>
           <ScaleBox />
         </section>
       );
     case "3":
       return (
         <section className="border p-4 space-y-4">
-          <p className="mb-4">RotateBox</p>
+          <p className="mb-4 bg-gray-200 inline-block px-2 py-1 rounded-lg">RotateBox</p>
           <RotateBox />
         </section>
       );
     case "4":
       return (
         <section className="border p-4 space-y-4">
-          <p className="mb-4">SkewBox</p>
+          <p className="mb-4 bg-gray-200 inline-block px-2 py-1 rounded-lg">SkewBox</p>
           <SkewBox />
         </section>
       );
     case "5":
       return (
         <section className="border p-4 space-y-4">
-          <p className="mb-4">PerspectiveBox</p>
+          <p className="mb-4 bg-gray-200 inline-block px-2 py-1 rounded-lg">PerspectiveBox</p>
           <PerspectiveBox />
         </section>
       );

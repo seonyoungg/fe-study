@@ -7,24 +7,30 @@ export default function BtnGroup() {
   const [count, setCount] = useState(1);
   const router = useRouter();
 
-  const countUp = () => {
-    setCount((prev) => prev + 1);
-  };
-
-  const countDown = () => {
-    setCount((prev) => (prev > 1 ? prev - 1 : 1));
+  const countUp = () => setCount((prev) => prev + 1);
+  const countDown = () => setCount((prev) => (prev > 1 ? prev - 1 : 1));
+  const countReset = () => {
+    setCount(1);
+    router.replace("/");
   };
 
   useEffect(() => {
-    router.push(`/basic/${count}`);
+    if (count !== 1) router.push(`/basic/${count}`);
   }, [count, router]);
 
+  // 토스 느낌 버튼 스타일
+  const btnStyle =
+    "px-5 py-2 rounded-full text-white font-medium shadow-sm hover:shadow-md transition-shadow duration-150 cursor-pointer";
+
   return (
-    <div className="flex justify-end gap-4 mt-4 w-full">
-      <button className="w-8 h-8 text-center bg-black text-white rounded-lg cursor-pointer" onClick={countDown}>
+    <div className="flex justify-end items-center gap-3 mb-6 w-full">
+      <button onClick={countReset} className={`${btnStyle} bg-[#3A3A3A] hover:bg-[#2c2c2c]`}>
+        홈으로
+      </button>
+      <button onClick={countDown} className={`${btnStyle} bg-[#0055FF] hover:bg-[#0041CC]`}>
         ◀
       </button>
-      <button className="w-8 h-8 text-center bg-black text-white rounded-lg cursor-pointer" onClick={countUp}>
+      <button onClick={countUp} className={`${btnStyle} bg-[#0055FF] hover:bg-[#0041CC]`}>
         ▶
       </button>
     </div>
