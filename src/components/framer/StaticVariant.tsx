@@ -1,5 +1,5 @@
-'use client';
-import { easeInOut, motion, Variants } from 'framer-motion';
+"use client";
+import { easeInOut, motion, Variants } from "framer-motion";
 
 const boxVariants: Variants = {
   hidden: { opacity: 0, x: 0, y: -20 },
@@ -7,5 +7,5 @@ const boxVariants: Variants = {
 };
 
 export default function StaticVariant() {
-  return <motion.div variants={boxVariants} initial='hidden' animate='visible' className='w-24 h-24 bg-green-500' />;
+  return <motion.div variants={boxVariants} initial="hidden" animate="visible" className="w-24 h-24 bg-green-500" />;
 }
