@@ -2,10 +2,14 @@
 import { motion } from "framer-motion";
 
 const parentVariants = {
+  hidden: { opacity: 0, backgroundColor: "pink" },
   show: {
+    opacity: 1,
+    backgroundColor: "skyblue",
     transition: {
+      duration: 1,
       staggerChildren: 0.3, // staggerChildren: 자식들의 애니메이션 간격
-      delayChildren: 0.2, // delayChildren: 애니메이션 지연
+      delayChildren: 2, // 첫 자식 delay
     },
   },
 };
