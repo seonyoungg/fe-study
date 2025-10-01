@@ -1,14 +1,18 @@
-import './../globals.css';
+import BtnGroup from "@/components/common/btnGroup";
+import "./../globals.css";
 
-export default function RootLayout({
+export default function BasicPage({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ko-KR'>
+    <html lang="ko-KR">
       <body>
-        <div className='w-full'>{children}</div>
+        <div className="w-full p-10 bg-white">
+          {children}
+          <BtnGroup />
+        </div>
       </body>
     </html>
   );
