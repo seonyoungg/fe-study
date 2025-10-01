@@ -1,6 +1,7 @@
 import BasicBox from "@/components/framer/BasicBox";
 import DynamicVariantCustom from "@/components/framer/DynamicVariantCustom";
 import DynamicVariantToggle from "@/components/framer/DynamicVariantToggle";
+import SharedLayoutAnimation from "@/components/framer/ExampleItem";
 import Orchestration from "@/components/framer/Orchestration";
 import StaggerWithCustom from "@/components/framer/StaggerCustom";
 import StaticVariant from "@/components/framer/StaticVariant";
@@ -54,6 +55,8 @@ export default async function BasicPage({ params }: PageProps) {
           <StaggerWithCustom />
         </section>
       );
+    case "6":
+      return <SharedLayoutAnimation />;
     default:
       return <div></div>;
   }
