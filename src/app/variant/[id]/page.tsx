@@ -10,8 +10,8 @@ interface PageProps {
   params: { id: string };
 }
 
-export default function BasicPage({ params }: PageProps) {
-  const { id } = params;
+export default async function BasicPage({ params }: PageProps) {
+  const { id } = await params;
   switch (id) {
     case "1":
       return (

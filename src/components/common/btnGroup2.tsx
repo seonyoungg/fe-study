@@ -3,25 +3,25 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-export default function BtnGroup() {
-  const [count, setCount] = useState(1);
+export default function BtnGroupOther() {
+  const [count2, setCount2] = useState(1);
   const router = useRouter();
   const pathname = usePathname();
 
-  const countUp = () => setCount((prev) => prev + 1);
-  const countDown = () => setCount((prev) => (prev > 1 ? prev - 1 : 1));
+  const countUp = () => setCount2((prev) => prev + 1);
+  const countDown = () => setCount2((prev) => (prev > 1 ? prev - 1 : 1));
   const countReset = () => {
-    setCount(1);
+    setCount2(1);
     router.replace("/");
   };
 
   useEffect(() => {
     if (pathname.includes("/basic")) {
-      router.push(`/basic/${count}`);
+      router.push(`/basic/${count2}`);
     } else if (pathname.includes("/variant")) {
-      router.push(`/variant/${count}`);
+      router.push(`/variant/${count2}`);
     }
-  }, [count, pathname, router]);
+  }, [count2, pathname, router]);
 
   // 토스 느낌 버튼 스타일
   const btnStyle =

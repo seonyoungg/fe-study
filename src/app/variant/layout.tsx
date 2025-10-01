@@ -1,5 +1,5 @@
-import BtnGroup from "@/components/common/btnGroup";
 import "./../globals.css";
+import BtnGroupOther from "@/components/common/btnGroup2";
 
 export default function FramerPage({
   children,
@@ -10,7 +10,7 @@ export default function FramerPage({
     <html lang="ko-KR">
       <body>
         <div className="w-full p-10 bg-white">
-          <BtnGroup />
+          <BtnGroupOther />
           {children}
         </div>
       </body>
