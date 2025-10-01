@@ -20,12 +20,12 @@ export default function BtnGroup() {
 
   // 토스 느낌 버튼 스타일
   const btnStyle =
-    "px-5 py-2 rounded-full text-white font-medium shadow-sm hover:shadow-md transition-shadow duration-150 cursor-pointer";
+    "px-4 py-2 rounded-2xl text-white font-medium shadow-sm hover:shadow-md transition-shadow duration-150 cursor-pointer";
 
   return (
     <div className="flex justify-end items-center gap-3 mb-6 w-full">
       <button onClick={countReset} className={`${btnStyle} bg-[#3A3A3A] hover:bg-[#2c2c2c]`}>
-        홈으로
+        홈
       </button>
       <button onClick={countDown} className={`${btnStyle} bg-[#0055FF] hover:bg-[#0041CC]`}>
         ◀
